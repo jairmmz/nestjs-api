@@ -1,4 +1,4 @@
-import { BadRequestException, Injectable, UnauthorizedException } from '@nestjs/common';
+import { BadRequestException, Injectable, Request, UnauthorizedException } from '@nestjs/common';
 import { UsersService } from 'src/users/users.service';
 import { RegisterDto } from './dto/register.dto';
 
@@ -27,7 +27,7 @@ export class AuthService {
             throw new UnauthorizedException('Invalid password');
         }
 
-        const payload = { email: user.email };
+        const payload = { email: user.email, sub: user.id };
 
         const token = await this.jwtService.signAsync(payload);
 
@@ -49,5 +49,10 @@ export class AuthService {
             password: await bcryptjs.hash(password, 10),
         });
     }
+
+    // async logout(@Request() request: any) {
+    //     await request.session.destroy();
+    //     return { message: 'User logged out successfully' };
+    // }
 
 }

@@ -21,9 +21,15 @@ export class AuthController {
         return this.authService.register(registerDto);
     }
 
+    // @Post('Logout')
+    // @UseGuards(AuthGuard)
+    // logout(@Request() request: any) {
+    //     return this.authService.logout(request)
+    // }
+
     @Get('profile')
     @UseGuards(AuthGuard)
-    profile(@Request() req) {
+    profile(@Request() req: any) {
         return req.user;
     }
 
