@@ -1,0 +1,21 @@
+{
+    "HELLO": "Hola",
+    "PRODUCT": {
+      "NEW": "Nuevo Producto: {name}"
+    },
+    "ENGLISH": "Inglés",
+    "ARRAY": ["UNO", "DOS", "TRES"],
+    "cat": "Gato",
+    "cat_name": "Gato: {name}",
+    "set-up-password": {
+      "heading": "Hola, {username}",
+      "title": "Has olvidado tu contraseña",
+      "followLink": "Siga el enlace para configurar su contraseña"
+    },
+    "day_interval": {
+      "one": "Cada día",
+      "other": "Cada {count} días",
+      "zero": "Nunca"
+    },
+    "nested": "Nosotros vamos de compras: $t(test.day_interval, {{\"count\": {count} }})"
+  }

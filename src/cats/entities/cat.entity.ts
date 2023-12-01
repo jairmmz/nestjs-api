@@ -1,4 +1,4 @@
-import { Breed } from 'src/breeds/entities/breed.entity';
+import { Breed } from '../../breeds/entities/breed.entity';
 import { Entity, Column, PrimaryGeneratedColumn, DeleteDateColumn, ManyToOne } from 'typeorm'
 
 @Entity()
