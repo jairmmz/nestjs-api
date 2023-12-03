@@ -1,3 +1,3 @@
 export const jwtConstants = {
-    secret: 'secretKey',
+    secret: 'Token para mi primera api en Nest.js', // Texto secreto para generar el token
 }

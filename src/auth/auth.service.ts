@@ -1,5 +1,5 @@
 import { BadRequestException, Injectable, UnauthorizedException } from '@nestjs/common';
-import { UsersService } from 'src/users/users.service';
+import { UsersService } from '../users/users.service';
 import { RegisterDto } from './dto/register.dto';
 
 import * as bcryptjs from 'bcryptjs';
@@ -15,7 +15,7 @@ export class AuthService {
     ) {}
 
     async login({ email, password }: LoginDto) {
-        const user = await this.userService.findOneByEmail(email);
+        const user = await this.userService.findByEmailWithPassword(email);
 
         if (!user) {
             throw new UnauthorizedException('User not found');
@@ -27,8 +27,7 @@ export class AuthService {
             throw new UnauthorizedException('Invalid password');
         }
 
-        const payload = { email: user.email, role: user.role };
-
+        const payload = { id: user.id, role: user.role };
         const token = await this.jwtService.signAsync(payload);
 
         return {
@@ -37,7 +36,7 @@ export class AuthService {
     }
 
     async register({ name, email, password }: RegisterDto) {
-        const user = await this.userService.findOneByEmail(email);
+        const user = await this.userService.findByEmailWithPassword(email);
 
         if (user) {
             throw new BadRequestException('User already exists');
@@ -59,8 +58,8 @@ export class AuthService {
     //     return { message: 'User logged out successfully' };
     // }
 
-    async profile({ email }: { email: string }) {
-        return await this.userService.findOneByEmail(email);
+    async profile({ id }: { id: number }) {
+        return await this.userService.findOneUser(id);
     }
 
 }

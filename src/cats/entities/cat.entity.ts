@@ -1,5 +1,6 @@
+import { User } from '../../users/entities/user.entity';
 import { Breed } from '../../breeds/entities/breed.entity';
-import { Entity, Column, PrimaryGeneratedColumn, DeleteDateColumn, ManyToOne } from 'typeorm'
+import { Entity, Column, PrimaryGeneratedColumn, DeleteDateColumn, ManyToOne, JoinColumn } from 'typeorm'
 
 @Entity()
 export class Cat {
@@ -19,6 +20,13 @@ export class Cat {
         // onDelete: 'CASCADE'
     })
     breed: Breed;
+
+    @ManyToOne(() => User)
+    @JoinColumn({ name: 'userId', referencedColumnName: 'id' })
+    user: User;
+
+    @Column()
+    userId: number;
 
     @DeleteDateColumn()
     deletedAt: Date;
