@@ -20,10 +20,6 @@ import { ConfigModule } from '@nestjs/config';
       database: process.env.DATABASE_NAME,
       autoLoadEntities: true,
       synchronize: true,
-      ssl: process.env.DATABASE_SSL === 'true',
-      extra: {
-        ssl: process.env.DATABASE_SSL === 'true' ? { rejectUnauthorized: false } : null,
-      }
     }),
     CatsModule,
     BreedsModule,
